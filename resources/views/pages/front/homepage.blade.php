@@ -45,19 +45,19 @@
                 </figcaption>
             </figure>
             <div class="columns is-centered widget-header is-mobile">
-                <a href="/wisata" class="column is-one-fifth has-background-light has-text-centered">
+                <a href="#" class="column is-one-fifth has-background-light has-text-centered">
                     <span class="icon is-medium has-text-link">
                         <i class="fas fa-history fa-lg"></i>
                     </span>
                     <p class="is-size-7 has-text-grey-dark has-text-weight-semibold">Terkini</p>
                 </a>
-                <a href="/kuliner" class="column is-one-fifth has-background-light has-text-centered">
+                <a href="#" class="column is-one-fifth has-background-light has-text-centered">
                     <span class="icon is-medium has-text-info">
                         <i class="fas fa-cogs fa-lg"></i>
                     </span>
                     <p class="is-size-7 has-text-grey-dark has-text-weight-semibold">Proses </p>
                 </a>
-                <a href="/penginapan" class="column is-one-fifth has-background-light has-text-centered">
+                <a href="#" class="column is-one-fifth has-background-light has-text-centered">
                     <span class="icon is-medium has-text-primary">
                         <i class="fas fa-check fa-lg"></i>
                     </span>
