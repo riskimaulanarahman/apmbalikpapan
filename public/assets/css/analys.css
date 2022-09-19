@@ -1,0 +1,75 @@
+.select2 {
+	width:100%!important;
+}
+
+/*.info-content-show {
+    position: absolute;
+    font-size: 9px;
+    left: 10px;
+    top: 60px;
+    height: 400px;
+    width: 250px;
+    background: rgba(26,34,41,.8);
+}*/
+/*
+.slimScrollDiv {
+	position: relative;
+    overflow: hidden;
+    width: auto;
+    height: 350px;
+}*/
+div.dt-button-collection {
+  max-height: 250px;
+  overflow-y: auto;
+  /*background-color: red !important;*/
+
+}
+.dt-button-collection a.buttons-columnVisibility:before,
+.dt-button-collection a.buttons-columnVisibility.active span:before {
+    display:block;
+    position:absolute;
+    top:1.2em;
+    left:0;
+    width:12px;
+    height:12px;
+    box-sizing:border-box;
+}
+
+.dt-button-collection a.buttons-columnVisibility:before {
+    content:' ';
+    margin-top:-6px;
+    margin-left:10px;
+    border:1px solid black;
+    border-radius:3px;
+}
+
+.dt-button-collection a.buttons-columnVisibility.active span:before {
+    content:'\2714';
+    margin-top:-11px;
+    margin-left:12px;
+    text-align:center;
+    text-shadow:1px 1px #DDD, -1px -1px #DDD, 1px -1px #DDD, -1px 1px #DDD;
+}
+
+.dt-button-collection a.buttons-columnVisibility span {
+    margin-left:20px;    
+}
+
+.input-group-addon {
+        
+    border-radius: 0px !important;
+
+}
+
+.theme-panel-content {
+    padding : 4px !important;
+}
+
+.theme-panel.theme-panel-lg {
+    /*width: 350px !important;*/
+    /*right: -350px !important;*/
+}
+
+/*button.dt-button.active {
+    
+}*/

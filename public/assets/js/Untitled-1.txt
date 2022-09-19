@@ -1,0 +1,6 @@
+	'hostname' => 'localhost',
+	'username' => 'u617662780_invpoltek', 
+	'password' => 'Inv-Poltek{1}', 
+	'database' => 'u617662780_invpoltek',
+
+    $connection = mysqli_connect("localhost","u617662780_invpoltek","Inv-Poltek{1}","u617662780_invpoltek");
