@@ -6,7 +6,7 @@
                <div class="column is-6">
                    <a href="/" class="columns is-centered is-mobile">
                        <div class="column is-narrow">
-                           <img class="rtfoot" src="assets/img/lambang_ITK.png">
+                           <img class="rtfoot" src="/assets/img/Lambang_ITK.png">
                        </div>
                        <div class="column is-narrow">
                            <p class="title is-size-3 has-text-light titfoot">APM</p>
