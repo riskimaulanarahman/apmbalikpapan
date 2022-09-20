@@ -40,10 +40,10 @@
 							@endif
 						</div>
 					</div>
-					<label class="control-label">Name <span class="text-danger">*</span></label>
+					<label class="control-label">Nama <span class="text-danger">*</span></label>
 					<div class="row row-space-10 {{ $errors->has('name') ? ' has-error' : '' }}">
 						<div class="col-md-12 m-b-15">
-							<input type="text" id="name" name="name" class="form-control" placeholder="Full Name" value="{{ old('name') }}" required autofocus />
+							<input type="text" id="name" name="name" class="form-control" placeholder="Nama Lengkap" value="{{ old('name') }}" required autofocus />
 							@if ($errors->has('name'))
 								<span class="help-block">
 									<strong>{{ $errors->first('name') }}</strong>
