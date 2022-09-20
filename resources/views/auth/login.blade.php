@@ -11,7 +11,7 @@
 			<div class="login-header">
 				<span><img style="max-width:50px; " src="{{URL::asset('assets/img/logo/logo_bpn.png')}}" alt=""></span> 
 				<div class="brand">
-					<b>APM Balikapapn</b>
+					<b>APM Balikpapan</b>
 				</div>
 				<div class="icon">
 					<i class="fa fa-sign-in-alt"></i>
