@@ -102,7 +102,7 @@
 						<thead>
 							<tr>
 								<th width="1%">no</th>
-								<th width="1%">Progress</th>
+								<th width="1%">detail</th>
 								<th class="text-nowrap">gambar</th>
 								<th class="text-nowrap">map</th>
 								<th class="text-nowrap">nama</th>
