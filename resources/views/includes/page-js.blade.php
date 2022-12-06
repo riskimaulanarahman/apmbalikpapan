@@ -8,4 +8,6 @@
 <!-- DevExtreme library -->
 <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/20.2.5/js/dx.all.js"></script>
 
+@include('includes.service');
+
 @stack('scripts')

@@ -200,9 +200,11 @@ class LaporanController extends Controller
     {
         $laporan = Laporan::find($id);
 
-        return view('pages/warga/edit_laporan',[
-            'laporan' => $laporan,
-            ]);
+        return $laporan;
+
+        // return view('pages/warga/edit_laporan',[
+        //     'laporan' => $laporan,
+        //     ]);
     }
 
     public function showforadmin($id)
@@ -227,9 +229,22 @@ class LaporanController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
+    {   
         $laporan = Laporan::findOrFail($id);
-        $laporan->update($request->all());
+
+        $requestData = $request->all();
+        if ($request->long == null) {
+            $requestData['long'] = $laporan->long;
+        } else {
+            $requestData['long'] = $request->long;
+        }
+        if ($request->lat == null) {
+            $requestData['lat'] = $laporan->lat;
+        } else {
+            $requestData['lat'] = $request->lat;
+        }
+
+        $laporan->update($requestData);
 
         return redirect()->route('warga.dashboard-warga.index')->with('status', "berhasil edit data");
     }

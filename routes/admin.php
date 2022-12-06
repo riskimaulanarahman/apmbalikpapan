@@ -34,6 +34,9 @@ Route::group( ['prefix' => 'admin','as' => 'admin.','middleware' => ['auth','rol
     Route::post('/master-user/update/{id}', 'SA_MasterUserController@update')->name('sa-user-update');
     Route::get('/master-user/deleted/{id}', 'SA_MasterUserController@deleted')->name('sa-user-deleted');
     //End
+
+    Route::apiResource('/ketlaporan', 'API\KetlaporanController');
+
     
 });
 

@@ -79,36 +79,38 @@
 									</a>
 								</td>
 								<td>{{$p->created_at}}</td>
-								<td>@if($p->status == 'menunggu') <span class="btn btn-warning">Menunggu</span> @else <span class="btn btn-success">Di Respon</span> @endif
+								<td>@if($p->status == 'menunggu') <span class="badge bg-warning" style="font-size: 12px">Menunggu</span> @else <span class="badge bg-success" style="font-size: 12px">Di Respon</span> @endif
 									@if($p->status == 'menunggu')
-										<a href="{{ route('admin.responlaporan', ['id' => $p->id	]) }}" class="btn btn-info">Respon</a>
+										<a href="{{ route('admin.responlaporan', ['id' => $p->id	]) }}" class="btn btn-info m-t-5">Respon</a>
 									@endif
 								</td>
 								<td>
 									@php
 									if($p->aksi == "selesai") {
-										$warna = "btn-success";
+										$warna = "bg-success";
 									} else if($p->aksi == "ditolak") {
-										$warna = "btn-danger";
+										$warna = "bg-danger";
 									} else if($p->aksi == "menunggu") {
-										$warna = "btn-inverse";
+										$warna = "bg-inverse";
 									} else if($p->aksi == "proses") {
-										$warna = "btn-info";
+										$warna = "bg-info";
 									} else {
-										$warna = "btn-inverse";
+										$warna = "bg-inverse";
 									}
 									@endphp
 									@if($p->aksi !== "menunggu")
-										<button class="btn {{$warna}}">{{ strtoupper($p->aksi) }}</button> 
+										<span class="badge {{$warna}}" style="font-size: 12px">{{ strtoupper($p->aksi) }}</span> 
 									@else
-										<button class="btn {{$warna}}">Tidak Ada</button> 
+										<span class="badge {{$warna}}" style="font-size: 12px">Tidak Ada</span> 
 									@endif
 								</td>
 								<td>
-									@if($p->aksi !== 'selesai')
-									<a href="{{ route('admin.showlaporan', ['id' => $p->id	]) }}"> 
-										<button type="button" class="btn btn-warning"> Ubah</button>
-									</a>
+									@if($p->status == 'direspon')
+										@if($p->aksi !== 'selesai')
+										<a href="{{ route('admin.showlaporan', ['id' => $p->id	]) }}"> 
+											<button type="button" class="btn btn-warning"> Ubah</button>
+										</a>
+										@endif
 									@endif
 									<form action="{{ route('admin.deletelaporan', [$p->id]) }}" method="post">
 										<input class="btn btn-danger" type="submit" value="Hapus" />

@@ -3,7 +3,7 @@
         <div class="container">
             <div class="navbar-brand mr-3">
                 <a class="navbar-item" href="/">
-                        <img class="rtfoot" src="/assets/img/Lambang_ITK.png" alt="">
+                        <img class="rtfoot" src="/assets/img/dishub.png" alt="">
                     <span class="ml-3">
                         <p class="title is-size-4">APM</p>
                         <p class="has-text-grey subtitle is-size-6">Aplikasi Pengaduan Masyarakat</p>

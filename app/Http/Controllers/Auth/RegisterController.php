@@ -47,16 +47,30 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $message = [
+            'required' => 'Silahkan isi kolom :attribute',
+            'min' => ':attribute harus 16 karakter',
+            'email' => 'Alamat email tidak sesuai',
+            'unique' => ':attribute sudah digunakan',
+            'confirmed' => 'Password konfirmasi tidak sesuai'
+        ];
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'nik' => 'required|unique:users',
+            'nik' => 'required|min:16|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             // 'kecamatan' => 'required',
             // 'kelurahan' => 'required',
             // 'nomor_rt' => 'required',
-        ]);
+        ], $message);
     }
+
+    // protected function message()
+    // {
+    //     return [
+    //         'nik.min' => 'tesstt'
+    //     ];
+    // }
 
     /**
      * Create a new user instance after a valid registration.

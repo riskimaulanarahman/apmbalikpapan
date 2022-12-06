@@ -44,7 +44,7 @@
                     </div>
                 </figcaption>
             </figure>
-            <div class="columns is-centered widget-header is-mobile">
+            {{-- <div class="columns is-centered widget-header is-mobile">
                 <a href="#" class="column is-one-fifth has-background-light has-text-centered">
                     <span class="icon is-medium has-text-link">
                         <i class="fas fa-history fa-lg"></i>
@@ -63,13 +63,7 @@
                     </span>
                     <p class="is-size-7 has-text-grey-dark has-text-weight-semibold">Selesai</p>
                 </a>
-                {{-- <a href="/event" class="column is-one-fifth has-background-light has-text-centered">
-                    <span class="icon is-medium has-text-success">
-                        <i class="fas fa-calendar fa-lg"></i>
-                    </span>
-                    <p class="is-size-7 has-text-grey-dark has-text-weight-semibold">Event</p>
-                </a> --}}
-            </div>
+            </div> --}}
         </section>
     </div>
     <div class="container container-event">
@@ -92,7 +86,7 @@
                             <figcaption>
                                 <span class="tag is-link mb-3 is-size-6">{{ $p->judul }}</span>
                                 <div style="height: 100%; overflow:scroll; margin-bottom:5px;">
-                                    <p class="mb-2 is-size-10" style="max-width:200px; height:50px;">{{ $p->laporan }}</p>
+                                    <p class="mb-2 is-size-10" style="max-width:200px; height:80px;">{{ $p->laporan }}</p>
                                 </div>
                                 <p class="has-text-light is-size-6">
                                     <a href="https://maps.google.com/?q={{$p->lat}},{{$p->long}}" target="_blank">
@@ -124,7 +118,7 @@
                             <figcaption>
                                 <span class="tag is-link mb-3 is-size-6">{{ $p->judul }}</span>
                                 <div style="height: 100%; overflow:scroll; margin-bottom:5px;">
-                                    <p class="mb-2 is-size-10" style="max-width:200px; height:50px;">{{ $p->laporan }}</p>
+                                    <p class="mb-2 is-size-10" style="max-width:200px; height:80px;">{{ $p->laporan }}</p>
                                 </div>
                                 <p class="has-text-light is-size-6">
                                     <a href="https://maps.google.com/?q={{$p->lat}},{{$p->long}}" target="_blank">
@@ -165,7 +159,7 @@
                             <figcaption>
                                 <span class="tag is-link mb-3 is-size-6">{{ $p->judul }}</span>
                                 <div style="height: 100%; overflow:scroll; margin-bottom:5px;">
-                                    <p class="mb-2 is-size-10" style="max-width:200px; height:50px;">{{ $p->laporan }}</p>
+                                    <p class="mb-2 is-size-10" style="max-width:200px; height:80px;">{{ $p->laporan }}</p>
                                 </div>
                                 <p class="has-text-light is-size-6">
                                     <a href="https://maps.google.com/?q={{$p->lat}},{{$p->long}}" target="_blank">

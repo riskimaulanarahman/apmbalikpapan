@@ -3,8 +3,10 @@
 @section('title', 'Edit Aksi')
 
 @push('css')
-	<link href="/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-	<link href="/assets/plugins/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+	{{-- <link href="/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+	<link href="/assets/plugins/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" /> --}}
+    {{-- <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/22.1.6/css/dx.light.css"> --}}
+
 @endpush
 
 @section('content')
@@ -26,6 +28,7 @@
 					</div>
 				</div>
 				<div class="panel-body">
+                    <input type="hidden" id="idaksi" value="{{$aksi->id}}">
                 <a href="{{ route('admin.laporan') }}" class="btn btn-warning">Kembali</a>
                     <br/><br/>
                 <form method="post" class="margin-bottom-0" action="{{ route('admin.laporanupdateaksi', ['id' => $aksi->id]) }}">
@@ -105,8 +108,8 @@
     
                 <!-- begin panel-body -->
                 <div class="panel-body">
-
-                        <table id="data-table-responsive" class="table table-striped table-bordered table-td-valign-middle">
+                    <div id="ketlaporan" style="height: 400px; width:100%;"></div>
+                        {{-- <table id="data-table-responsive" class="table table-striped table-bordered table-td-valign-middle">
                             <thead>
                                 <tr>
                                     <th width="1%">#</th>
@@ -115,7 +118,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no = 1; ?>
+                            
                                 @foreach($proses as $p)
                             <tr>
                                 <td class="text-center">{{ $no++ }}</td>
@@ -123,8 +126,8 @@
                                 <td>{{ $p->created_at }}</td>
                             </tr>
                             @endforeach
-                            </tbody>
-                        </table>
+                            </tbody> 
+                        </table> --}}
                 </div>
                 <!-- end panel-body -->
             </div>
@@ -136,9 +139,122 @@
 @endsection
 
 @push('scripts')
-	<script src="/assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+    {{-- <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/22.1.6/js/dx.all.js"></script> --}}
+	{{-- <script src="/assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
 	<script src="/assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
 	<script src="/assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-	<script src="/assets/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-	<script src="/assets/js/demo/table-manage-responsive.demo.js"></script>
+	<script src="/assets/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script> --}}
+	{{-- <script src="/assets/js/demo/table-manage-responsive.demo.js"></script> --}}
+
+
+    <script>
+        idaksi = $('#idaksi').val();
+
+        var store = new DevExpress.data.CustomStore({
+            key: "id",
+            load: function() {
+                return sendRequest(apiurl + "/admin/ketlaporan/"+idaksi);
+            },
+            insert: function(values) {
+                return sendRequest(apiurl + "/admin/ketlaporan", "POST", values);
+            },
+            update: function(key, values) {
+                return sendRequest(apiurl + "/admin/ketlaporan/"+key, "PUT", values);
+            },
+            remove: function(key) {
+                return sendRequest(apiurl + "/admin/ketlaporan/"+key, "DELETE");
+            },
+        });
+        
+        function moveEditColumnToLeft(dataGrid) {
+            dataGrid.columnOption("command:edit", { 
+                visibleIndex: -1,
+                width: 80 
+            });
+        }
+        // attribute
+        var dataGrid = $("#ketlaporan").dxDataGrid({    
+            dataSource: store,
+            allowColumnReordering: true,
+            allowColumnResizing: true,
+            columnsAutoWidth: true,
+            // columnMinWidth: 80,
+            wordWrapEnabled: true,
+            showBorders: true,
+            filterRow: { visible: false },
+            filterPanel: { visible: false },
+            headerFilter: { visible: true },
+            editing: {
+                useIcons:true,
+                mode: "cell",
+                allowAdding: false,
+                allowUpdating: true,
+                allowDeleting: true,
+            },
+            scrolling: {
+                mode: "virtual"
+            },
+            columns: [
+                // { 
+                //     dataField: "nama_dokumen_klien",
+                //     sortOrder: "asc",
+                //     validationRules: [
+                //         { 
+                //             type: "required" 
+                //         }
+                //     ]
+                // },
+                { 
+                    dataField: "keterangan",
+                },
+                {   
+                    caption: "tanggal & waktu",
+                    dataField: "created_at",
+                    editorOptions: {
+                        disabled : true
+                    }
+                },
+                // { 
+                //     dataField: "status_aktif",
+                //     dataType: "boolean",
+                //     encodeHtml: false,
+                //     customizeText: function (e) {
+                //         var arrText = ["<span class='btn btn-danger btn-xs'>Tidak Aktif</span>","<span class='btn btn-success btn-xs'>Aktif</span>"];
+                //         return arrText[e.value];
+                //     }
+                // },
+               
+            ],
+            export: {
+                enabled: false,
+                fileName: "referensi-dokumenklien",
+                excelFilterEnabled: true,
+                allowExportSelectedData: true
+            },
+            onInitNewRow: function(e) {  
+        
+            } ,
+            onContentReady: function(e){
+                moveEditColumnToLeft(e.component);
+            },
+            onEditorPreparing: function(e) {
+        
+            },
+            onToolbarPreparing: function(e) {
+                dataGrid = e.component;
+        
+                e.toolbarOptions.items.unshift({						
+                    location: "after",
+                    widget: "dxButton",
+                    options: {
+                        hint: "Refresh Data",
+                        icon: "refresh",
+                        onClick: function() {
+                            dataGrid.refresh();
+                        }
+                    }
+                })
+            },
+        }).dxDataGrid("instance");
+        </script>
 @endpush

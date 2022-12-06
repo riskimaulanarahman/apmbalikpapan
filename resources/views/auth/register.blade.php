@@ -29,10 +29,10 @@
 				<form method="POST" class="margin-bottom-0" action="{{ route('register') }}">
 				{{ csrf_field() }}
 
-					<label class="control-label">nik <span class="text-danger">*</span></label>
+					<label class="control-label">NIK <span class="text-danger">*</span></label>
 					<div class="row row-space-10 {{ $errors->has('nik') ? ' has-error' : '' }}">
 						<div class="col-md-12 m-b-15">
-							<input type="text" id="nik" name="nik" class="form-control" placeholder="nik" value="{{ old('nik') }}" required />
+							<input oninvalid="this.setCustomValidity('Silahkan isi kolom ini')" oninput="this.setCustomValidity('')" type="number" min="16" id="nik" name="nik" class="form-control" placeholder="NIK" value="{{ old('nik') }}" required />
 							@if ($errors->has('nik'))
 								<span class="help-block">
 									<strong>{{ $errors->first('nik') }}</strong>
@@ -43,7 +43,7 @@
 					<label class="control-label">Nama <span class="text-danger">*</span></label>
 					<div class="row row-space-10 {{ $errors->has('name') ? ' has-error' : '' }}">
 						<div class="col-md-12 m-b-15">
-							<input type="text" id="name" name="name" class="form-control" placeholder="Nama Lengkap" value="{{ old('name') }}" required autofocus />
+							<input oninvalid="this.setCustomValidity('Silahkan isi kolom ini')" oninput="this.setCustomValidity('')" type="text" id="name" name="name" class="form-control" placeholder="Nama Lengkap" value="{{ old('name') }}" required autofocus />
 							@if ($errors->has('name'))
 								<span class="help-block">
 									<strong>{{ $errors->first('name') }}</strong>
@@ -51,10 +51,10 @@
 							@endif
 						</div>
 					</div>
-					<label class="control-label">no.telepon <span class="text-danger">*</span></label>
+					<label class="control-label">No Telp <span class="text-danger">*</span></label>
 					<div class="row row-space-10 {{ $errors->has('notelp') ? ' has-error' : '' }}">
 						<div class="col-md-12 m-b-15">
-							<input type="number" id="notelp" name="notelp" class="form-control" placeholder="notelp" value="{{ old('notelp') }}" required />
+							<input oninvalid="this.setCustomValidity('Silahkan isi kolom ini')" oninput="this.setCustomValidity('')" type="number" id="notelp" name="notelp" class="form-control" placeholder="No Telp" value="{{ old('notelp') }}" required />
 
 							@if ($errors->has('notelp'))
 								<span class="help-block">
@@ -80,10 +80,10 @@
 							@endif
 						</div>
 					</div> --}}
-					<label class="control-label">email <span class="text-danger">*</span></label>
+					<label class="control-label">Email <span class="text-danger">*</span></label>
 					<div class="row row-space-10 {{ $errors->has('email') ? ' has-error' : '' }}">
 						<div class="col-md-12 m-b-15">
-							<input type="email" id="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}" required />
+							<input type="text" id="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}" />
 							@if ($errors->has('email'))
 								<span class="help-block">
 									<strong>{{ $errors->first('email') }}</strong>
@@ -91,10 +91,10 @@
 							@endif
 						</div>
 					</div>
-					<label class="control-label">password <span class="text-danger">*</span></label>
+					<label class="control-label">Password <span class="text-danger">*</span></label>
 					<div class="row row-space-10 {{ $errors->has('password') ? ' has-error' : '' }}">
 						<div class="col-md-12 m-b-15">
-							<input type="password" id="password" name="password" class="form-control" placeholder="Password" value="{{ old('password') }}" required />
+							<input oninvalid="this.setCustomValidity('Silahkan isi kolom ini')" oninput="this.setCustomValidity('')" type="password" id="password" name="password" class="form-control" placeholder="Password" value="{{ old('password') }}" required />
 							@if ($errors->has('password'))
 								<span class="help-block">
 									<strong>{{ $errors->first('password') }}</strong>
@@ -102,10 +102,10 @@
 							@endif
 						</div>
 					</div>
-					<label class="control-label">Confirm Password <span class="text-danger">*</span></label>
+					<label class="control-label">Konfirmasi Password <span class="text-danger">*</span></label>
 					<div class="row row-space-10">
 						<div class="col-md-12 m-b-15">
-							<input type="password" id="password-confirm" name="password_confirmation" class="form-control" placeholder="Re-Password" required />
+							<input oninvalid="this.setCustomValidity('Silahkan isi kolom ini')" oninput="this.setCustomValidity('')" type="password" id="password-confirm" name="password_confirmation" class="form-control" placeholder="Konfirmasi Password" required />
 						</div>
 					</div>
 					<div class="register-buttons">

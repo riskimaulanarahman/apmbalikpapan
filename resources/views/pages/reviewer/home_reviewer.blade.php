@@ -130,26 +130,26 @@
 								<td>{{ $p->judul }}</td>
                                 <td>{{ $p->laporan }}</td>
                                 <td>{{ $p->created_at }}</td>
-								<td>@if($p->status == 'menunggu') <span class="btn btn-warning">Menunggu</span> @else <span class="btn btn-success">Di Respon</span> @endif
+								<td>@if($p->status == 'menunggu') <span class="badge bg-warning" style="font-size: 12px">Menunggu</span> @else <span class="badge bg-success" style="font-size: 12px">Di Respon</span> @endif
 									@php
 									if($p->aksi == "selesai") {
-										$warna = "btn-success";
+										$warna = "bg-success";
 									} else if($p->aksi == "ditolak") {
-										$warna = "btn-danger";
+										$warna = "bg-danger";
 									} else if($p->aksi == "menunggu") {
-										$warna = "btn-inverse";
+										$warna = "bg-inverse";
 									} else if($p->aksi == "proses") {
-										$warna = "btn-info";
+										$warna = "bg-info";
 									} else {
-										$warna = "btn-inverse";
+										$warna = "bg-inverse";
 									}
 									@endphp
 								</td>
                                 <td>
 									@if($p->aksi !== 'menunggu')
-										<button class="btn {{$warna}}">{{ strtoupper($p->aksi) }}</button> 
+										<span class="badge {{$warna}}" style="font-size: 12px">{{ strtoupper($p->aksi) }}</span> 
 									@else
-										<button class="btn {{$warna}}">Tidak Ada</button> 
+										<span class="badge {{$warna}}" style="font-size: 12px">Tidak Ada</span> 
 									@endif
 								</td>
 								

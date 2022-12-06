@@ -88,31 +88,32 @@
 								<td>{{ $p->judul }}</td>
                                 <td>{{ $p->laporan }}</td>
                                 <td>{{ $p->created_at }}</td>
-								<td>@if($p->status == 'menunggu') <span class="btn btn-warning">Menunggu</span> @else <span class="btn btn-success">Di Respon</span> @endif
+								<td>@if($p->status == 'menunggu') <span class="badge bg-warning" style="font-size: 14px;">Menunggu</span> @else <span class="badge bg-success" style="font-size: 14px;">Di Respon</span> @endif
 									@php
 									if($p->aksi == "selesai") {
-										$warna = "btn-success";
+										$warna = "bg-success";
 									} else if($p->aksi == "ditolak") {
-										$warna = "btn-danger";
+										$warna = "bg-danger";
 									} else if($p->aksi == "menunggu") {
-										$warna = "btn-inverse";
+										$warna = "bg-inverse";
 									} else if($p->aksi == "proses") {
-										$warna = "btn-info";
+										$warna = "bg-info";
 									} else {
-										$warna = "btn-inverse";
+										$warna = "bg-inverse";
 									}
 									@endphp
 								</td>
                                 <td>
 									@if($p->aksi !== 'menunggu')
-										<button class="btn {{$warna}}">{{ strtoupper($p->aksi) }}</button> 
+										<span class="badge {{$warna}}" style="font-size: 14px;">{{ strtoupper($p->aksi) }}</span> 
 									@else
-										<button class="btn {{$warna}}">Tidak Ada</button> 
+										<span class="badge {{$warna}}" style="font-size: 14px;">Tidak Ada</span> 
 									@endif
 								</td>
 								<td>
 									@if($p->status !== 'direspon')
-										<a href="{{ route('warga.dashboard-warga.show', ['id' => $p->id	]) }}" class="btn btn-warning">Ubah</a>
+										<button onClick="ubahlaporan({{$p->id}});" class="btn btn-warning">Ubah</button>
+										{{-- <a href="{{ route('warga.dashboard-warga.show', ['id' => $p->id	]) }}" class="btn btn-warning">Ubah</a> --}}
 										<form action="{{ route('warga.dashboard-warga.destroy', ['id' => $p->id]) }}" method="post">
 											<input class="btn btn-danger" type="submit" value="Hapus" />
 											@method('delete')
@@ -144,7 +145,7 @@
 			{{ csrf_field() }}
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">Buat Laporan</h4>
+					<h4 class="modal-title" id="headertitle">Buat Laporan</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 				</div>
 				<div class="modal-body">
@@ -175,7 +176,7 @@
 					<label class="control-label">gambar <span class="text-danger">*</span></label>
 					<div class="row row-space-10 {{ $errors->has('gambar') ? ' has-error' : '' }}">
 						<div class="col-md-12 m-b-15">
-							<input type="file" name="gambar" id="gambar" required>
+							<input type="file" name="gambar" id="gambar" accept="image/*" required>
 							@if ($errors->has('gambar'))
 								<span class="help-block">
 									<strong>{{ $errors->first('gambar') }}</strong>
@@ -189,7 +190,7 @@
 						<div class="row row-space-10">
 							<div class="col-md-12 m-b-15">
 								<input type="text" id="address" class="form-control">
-								<button type="button" id="find-address" class="btn btn-info">Cari Alamat</button>
+								<button type="button" id="find-address" class="btn btn-info find-address">Cari Alamat</button>
 							</div>
 						</div>
 						
@@ -205,6 +206,84 @@
 				<div class="modal-footer">
 					<a href="javascript:;" class="btn btn-white" data-dismiss="modal">Close</a>
 					<button type="submit" class="btn btn-warning">Submit</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- #modal-dialog -->
+<div class="modal modal-message fade" id="modal-ubah-laporan">
+	<div class="modal-dialog">
+
+		{{-- <form id="formeditlaporan" enctype="multipart/form-data"> --}}
+		<form method="post" id="formeditlaporan" action="{{ route('warga.dashboard-warga.update',['id' => 110]) }}"  enctype="multipart/form-data">
+			{{-- {{ csrf_field() }} --}}
+			@method('put')
+			@csrf
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="headertitle">Ubah Laporan</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				</div>
+				<div class="modal-body">
+					<label class="control-label">judul <span class="text-danger">*</span></label>
+					<div class="row row-space-10 {{ $errors->has('judul') ? ' has-error' : '' }}">
+						<div class="col-md-12 m-b-15">
+							<input type="text" id="edit-judul" name="judul" class="form-control" required>
+							@if ($errors->has('judul'))
+								<span class="help-block">
+									<strong>{{ $errors->first('judul') }}</strong>
+								</span>
+							@endif
+						</div>
+					</div>
+
+					<label class="control-label">isi laporan <span class="text-danger">*</span></label>
+					<div class="row row-space-10 {{ $errors->has('laporan') ? ' has-error' : '' }}">
+						<div class="col-md-12 m-b-15">
+							<textarea rows="4" id="edit-laporan" name="laporan" class="form-control" required></textarea>
+							@if ($errors->has('laporan'))
+								<span class="help-block">
+									<strong>{{ $errors->first('laporan') }}</strong>
+								</span>
+							@endif
+						</div>
+					</div>
+
+					<label class="control-label">gambar <span class="text-danger">*</span></label>
+					<div class="row row-space-10 {{ $errors->has('gambar') ? ' has-error' : '' }}">
+						<div class="col-md-12 m-b-15">
+							<input type="file" name="gambar" id="edit-gambar" accept="image/*" >
+							@if ($errors->has('gambar'))
+								<span class="help-block">
+									<strong>{{ $errors->first('gambar') }}</strong>
+								</span>
+							@endif
+						</div>
+					</div>
+
+					<div style="border:2px solid red; padding:10px; border-radius: 10px;">
+						<label class="control-label">Cari Titik by Nama Jalan/Lokasi Terdekat <span class="text-danger">*</span></label>
+						<div class="row row-space-10">
+							<div class="col-md-12 m-b-15">
+								<input type="text" id="edit-address" class="form-control">
+								<button type="button" id="edit-find-address" class="btn btn-info">Cari Alamat</button>
+							</div>
+						</div>
+						
+						<input type="hidden" id="edit-lat" name="lat">
+						<input type="hidden" id="edit-long" name="long">
+						
+						<div style="height: 400px">
+							<div id="edit-map" style="height: 100%; width:100%;"></div>
+						</div>
+					</div>
+						
+				</div>
+				<div class="modal-footer">
+					<a href="javascript:;" class="btn btn-white" data-dismiss="modal">Close</a>
+					<button type="submit" id="btnubahlaporan" class="btn btn-warning">Submit</button>
 				</div>
 			</div>
 		</form>
@@ -239,21 +318,10 @@
 
 <script>
 
-	// function deletelaporan(id) {
-	// 	$.ajax({
-	// 		url: '/warga/dashboard-warga/'+id,
-	// 		method: 'DELETE',  // user.destroy
-	// 		success: function(result) {
-	// 			// Do something with the result
-	// 			window.reload();
-	// 		}
-	// 	});
-	// }
+
 	function details(id) {
-		// alert(id);
 		$('#modal-cek-detail').modal('show');
 		$.getJSON('/api/cek-detail/'+id,function(data){
-			// console.log(data);
 			$('#detaildata').html('');
 			$.each(data,function(x,y){
 				$('#detaildata').append('<li> Tgl.<em>'+y.created_at+'</em> | <strong>'+y.keterangan+'</strong></li>');
@@ -261,10 +329,30 @@
 		})
 	}
 
-	// var apiKey = 'AIzaSyDZ-1y-BBvUB-BDzkYwOqBjXVKziiNg5yI';
+	function ubahlaporan(id) {
+		console.log(id);
+		$('#modal-ubah-laporan').modal('show');
+		// console.log(window.location.origin+'dashboard-warga/')
+		api = window.location.origin
+		$.getJSON(api+'/warga/dashboard-warga/'+id,function(data){
+			console.log(data);
+			$('#edit-judul').val(data.judul);
+			$('#edit-laporan').val(data.laporan);
+			$('#formeditlaporan').attr('action',api+'/warga/dashboard-warga/'+id);
+		})
+
+		// $('#btnubahlaporan').click(function(){
+
+		// 	window.location.href = id
+		// 	// window.location.href = "{{URL::to('restaurants/20')}}"
+		// })
+
+
+	}
+
 	var longitude, latitude, map;
 
-	$('#find-address').click(function() {
+	$('.find-address').click(function() {
 		var address = $('#address').val();
 		// var postcode = $('#postcode').val();
 		var addressClean = address.replace(/\s+/g, '+');
@@ -305,6 +393,12 @@
 			zoom: 14,
 			center: (longitude == null) ? myLatlng : myLatlng2,
 		});
+
+		const editmap = new google.maps.Map(document.getElementById("edit-map"), {
+			zoom: 14,
+			center: (longitude == null) ? myLatlng : myLatlng2,
+		});
+		
 		// Create the initial InfoWindow.
 		let infoWindow = new google.maps.InfoWindow({
 			content: "Click the map to get Lat/Lng!",
@@ -318,32 +412,41 @@
 			draggable: true,
 			title: "Where's your garden?"
 		});
+
+		var editmarker = new google.maps.Marker({
+			position: (longitude == null) ? myLatlng : myLatlng2,
+			map: editmap,
+			draggable: true,
+			title: "Where's your garden?"
+		});
 		// Configure the click listener.
 		map.addListener("click", (mapsMouseEvent) => {
-			// Close the current InfoWindow.
-			// infoWindow.close();
-			// Create a new InfoWindow.
-			// infoWindow = new google.maps.InfoWindow({
-			// position: mapsMouseEvent.latLng,
-			// });
-			// infoWindow.setContent(
-			// JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-			// );
+
 			let location = mapsMouseEvent.latLng.toJSON()
-			// console.log(location.lat);
 			$('#lat').val(location.lat);
 			$('#long').val(location.lng);
 			const markerlatlong = new google.maps.LatLng(location.lat, location.lng);
 
     		marker.setPosition(markerlatlong);
-			// infoWindow.open(map);
 		});
-		}
+		editmap.addListener("click", (mapsMouseEvent) => {
 
-		// initMap();
-		window.initMap = initMap;
+			let location = mapsMouseEvent.latLng.toJSON()
+			$('#edit-lat').val(location.lat);
+			$('#edit-long').val(location.lng);
+			const markerlatlong = new google.maps.LatLng(location.lat, location.lng);
+
+			editmarker.setPosition(markerlatlong);
+		});
+	}
+
+
+	window.initMap = initMap;
 </script>
+
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ-1y-BBvUB-BDzkYwOqBjXVKziiNg5yI&callback=initMap"></script>
+{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ-1y-BBvUB-BDzkYwOqBjXVKziiNg5yI&callback=editMap"></script> --}}
 
 <script src="/assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="/assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
