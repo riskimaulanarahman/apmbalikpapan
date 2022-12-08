@@ -15,7 +15,7 @@
 			<span class="icon-bar"></span>
 		</button>
 		@endif
-		<a href="/" class="navbar-brand"><img src="/assets/img/dishub.png" alt="" style="margin-right: 10px;"> <b style="color: gray;">APM | Institut Teknologi Kalimantan</b></a>
+		<a href="/" class="navbar-brand"><img src="/assets/img/dishub.png" alt="" style="margin-right: 10px;"> <b style="color: gray;">APM | Dinas Perhubungan Kota Balikpapan</b></a>
 		@if ($headerMegaMenu)
 			<button type="button" class="navbar-toggle pt-0 pb-0 mr-0" data-toggle="collapse" data-target="#top-navbar">
 				<span class="fa-stack fa-lg text-inverse">
