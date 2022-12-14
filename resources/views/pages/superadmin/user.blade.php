@@ -73,8 +73,8 @@
 									@endif
 								</td>
                                 <td>
-									@if($p->role !== 'admin')
                                     <a href="{{ route('admin.sa-user-edit', ['id' => $p->id_users]) }}" class="btn btn-warning">Edit</a>
+									@if($p->role !== 'admin')
                                     <a href="{{ route('admin.sa-user-deleted', ['id' => $p->id_users ]) }}" onclick="return confirm('Apakah Anda Yakin Hapus data ini ?');" class="btn btn-danger">Hapus</a>
 									@endif
                                 </td>
