@@ -190,7 +190,7 @@
 						<div class="row row-space-10">
 							<div class="col-md-12 m-b-15">
 								<input type="text" id="address" class="form-control">
-								<button type="button" id="find-address" class="btn btn-info find-address">Cari Alamat</button>
+								<button type="button" id="find-address" class="btn btn-info">Cari Alamat</button>
 							</div>
 						</div>
 						
@@ -352,37 +352,58 @@
 
 	var longitude, latitude, map;
 
-	$('.find-address').click(function() {
+	$('#find-address').click(function() {
 		var address = $('#address').val();
-		// var postcode = $('#postcode').val();
 		var addressClean = address.replace(/\s+/g, '+');
-		// var postcodeClean = postcode.replace(/\s+/g, '+');
-		// var apiCall = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + addressClean + '&key=' + apiKey + '';
 
-		//$.getJSON(apiCall,function (data, textStatus) {
 		var geocoder = new google.maps.Geocoder();
-		geocoder.geocode({
-		address: addressClean
-		}, function(results, status) {
-		console.log(status);
+		geocoder.geocode({address: addressClean}, function(results, status) {
 		if (status == 'OK') {
+				console.log(results);
+				longitude = results[0].geometry.location.lng();
+				latitude = results[0].geometry.location.lat();
+				document.getElementById("long").value = longitude;
+				document.getElementById("lat").value = latitude;
+				// geocoder is asynchronous, do this in the callback function
+				longitude = $("input#long").val();
+				latitude = $("input#lat").val();
 
-			console.log(results);
-			longitude = results[0].geometry.location.lng();
-			latitude = results[0].geometry.location.lat();
-			document.getElementById("long").value = longitude;
-			document.getElementById("lat").value = latitude;
-			// geocoder is asynchronous, do this in the callback function
-			longitude = $("input#long").val();
-			latitude = $("input#lat").val();
+				if (longitude && latitude) {
+				longitude = parseFloat(longitude);
+				latitude = parseFloat(latitude);
 
-			if (longitude && latitude) {
-			longitude = parseFloat(longitude);
-			latitude = parseFloat(latitude);
+				initMap(longitude, latitude);
+				}
+			} else 
+			alert("alamat tidak ditemukan")
+		});
 
-			initMap(longitude, latitude);
-			}
-		} else alert("alamat tidak ditemukan")
+	})
+
+	$('#edit-find-address').click(function() {
+		var editaddress = $('#edit-address').val();
+		var editressClean = editaddress.replace(/\s+/g, '+');
+
+		var editgeocoder = new google.maps.Geocoder();
+		editgeocoder.geocode({address: editressClean}, function(results, status) {
+		if (status == 'OK') {
+				console.log(results);
+				longitude = results[0].geometry.location.lng();
+				latitude = results[0].geometry.location.lat();
+				document.getElementById("edit-long").value = longitude;
+				document.getElementById("edit-lat").value = latitude;
+				// geocoder is asynchronous, do this in the callback function
+				longitude = $("input#edit-long").val();
+				latitude = $("input#edit-lat").val();
+
+				if (longitude && latitude) {
+				longitude = parseFloat(longitude);
+				latitude = parseFloat(latitude);
+
+				initMap(longitude, latitude);
+				}
+			} else 
+			alert("alamat tidak ditemukan")
 		});
 	})
 
