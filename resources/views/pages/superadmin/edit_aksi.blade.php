@@ -33,21 +33,21 @@
                     <br/><br/>
                 <form method="post" class="margin-bottom-0" action="{{ route('admin.laporanupdateaksi', ['id' => $aksi->id]) }}">
                     {{ csrf_field() }}
-                            <label class="control-label">judul <span class="text-danger">*</span></label>
+                            <label class="control-label">Judul <span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('judul') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
                                     <input type="text" class="form-control" value="{{$aksi->judul}}" readonly>
                                 </div>
                             </div>
 
-                            <label class="control-label">isi laporan <span class="text-danger">*</span></label>
+                            <label class="control-label">Isi Laporan <span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('laporan') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
                                     <input type="text" class="form-control" value="{{$aksi->laporan}}" readonly>
                                 </div>
                             </div>
                             
-                            <label class="control-label">aksi <span class="text-danger">*</span></label>
+                            <label class="control-label">Aksi <span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('aksi') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
                                     <select class="form-control" name="aksi" id="aksi" required>
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
 
-                            <label class="control-label">keterangan <span class="text-danger">*</span></label>
+                            <label class="control-label">Keterangan <span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('keterangan') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
                                     <input type="text" id="keterangan" name="keterangan" class="form-control" placeholder="Full keterangan" value="{{ $aksi->keterangan }}" required autofocus />

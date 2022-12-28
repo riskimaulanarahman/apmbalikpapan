@@ -41,11 +41,11 @@
 						<thead>
 							<tr>
 								<th width="1%">#</th>
-								<th class="text-nowrap">name</th>
-								<th class="text-nowrap">nik</th>
-								<th class="text-nowrap">email</th>
-								<th class="text-nowrap">password</th>
-								<th class="text-nowrap">role</th>
+								<th class="text-nowrap">Nama</th>
+								<th class="text-nowrap">NIK</th>
+								<th class="text-nowrap">Email</th>
+								<th class="text-nowrap">Password</th>
+								<th class="text-nowrap">Role</th>
 								{{-- <th class="text-nowrap">kecamatan</th>
 								<th class="text-nowrap">kelurahan</th> --}}
 								<th class="text-nowrap">Status</th>

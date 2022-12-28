@@ -79,7 +79,7 @@
 									</a>
 								</td>
 								<td>{{$p->created_at}}</td>
-								<td>@if($p->status == 'menunggu') <span class="badge bg-warning" style="font-size: 12px">Menunggu</span> @else <span class="badge bg-success" style="font-size: 12px">Di Respon</span> @endif
+								<td>@if($p->status == 'menunggu') <span class="badge bg-warning" style="font-size: 12px">Menunggu</span> @else <span class="badge bg-success" style="font-size: 12px">Direspon</span> @endif
 									@if($p->status == 'menunggu')
 										<a href="{{ route('admin.responlaporan', ['id' => $p->id	]) }}" class="btn btn-info m-t-5">Respon</a>
 									@endif

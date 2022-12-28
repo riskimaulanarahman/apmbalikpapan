@@ -88,7 +88,7 @@
 								<td>{{ $p->judul }}</td>
                                 <td>{{ $p->laporan }}</td>
                                 <td>{{ $p->created_at }}</td>
-								<td>@if($p->status == 'menunggu') <span class="badge bg-warning" style="font-size: 14px;">Menunggu</span> @else <span class="badge bg-success" style="font-size: 14px;">Di Respon</span> @endif
+								<td>@if($p->status == 'menunggu') <span class="badge bg-warning" style="font-size: 14px;">Menunggu</span> @else <span class="badge bg-success" style="font-size: 14px;">Direspon</span> @endif
 									@php
 									if($p->aksi == "selesai") {
 										$warna = "bg-success";
