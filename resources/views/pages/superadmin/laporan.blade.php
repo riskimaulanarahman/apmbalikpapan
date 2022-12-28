@@ -53,15 +53,15 @@
 						<thead>
 							<tr>
 								<th width="1%">#</th>
-								<th class="text-nowrap">nama</th>
-								<th class="text-nowrap">judul</th>
-								<th class="text-nowrap">laporan</th>
-								<th class="text-nowrap">gambar</th>
-								<th class="text-nowrap">map</th>
-								<th class="text-nowrap">tanggal</th>
-								<th class="text-nowrap">status</th>
-								<th class="text-nowrap">progress</th>
-								<th class="text-nowrap" width="15%">aksi</th>
+								<th class="text-nowrap">Nama</th>
+								<th class="text-nowrap">Judul</th>
+								<th class="text-nowrap">Laporan</th>
+								<th class="text-nowrap">Gambar</th>
+								<th class="text-nowrap">Map</th>
+								<th class="text-nowrap">Tanggal</th>
+								<th class="text-nowrap">Status</th>
+								<th class="text-nowrap">Progress</th>
+								<th class="text-nowrap" width="15%">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>

@@ -31,7 +31,7 @@
                 <form method="POST" class="margin-bottom-0" action="{{ route('admin.sa-user-update', ['id' => $user->id_users]) }}">
                         {{ csrf_field() }}
         
-                            <label class="control-label">Name <span class="text-danger">*</span></label>
+                            <label class="control-label">Nama <span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('name') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
                                     <input type="text" id="name" name="name" class="form-control" placeholder="Full Name" value="{{ $user->name }}" required autofocus />
@@ -42,7 +42,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <label class="control-label">nik <span class="text-danger">*</span></label>
+                            <label class="control-label">NIK <span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('nik') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
                                     <input type="text" id="nik" name="nik" class="form-control" placeholder="nik" value="{{ $user->nik }}" required />
@@ -53,7 +53,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <label class="control-label">email <span class="text-danger">*</span></label>
+                            <label class="control-label">Email <span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('email') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
                                     <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="{{ $user->email }}" required />
@@ -64,7 +64,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <label class="control-label">role <span class="text-danger">*</span></label>
+                            <label class="control-label">Role <span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('role') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
                                     <select class="form-control" name="role" id="role" required>
@@ -79,7 +79,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <label class="control-label">isValid ? <span class="text-danger">*</span></label>
+                            <label class="control-label">Status Verifikasi<span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('isvalid') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
                                     <select class="form-control" name="isvalid" id="isvalid" required>
@@ -126,7 +126,7 @@
                                     @endif
                                 </div>
                             </div> --}}
-                            <label class="control-label">password 
+                            <label class="control-label">Password 
                             </label>
                             <div class="row row-space-10 {{ $errors->has('password') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
