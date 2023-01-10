@@ -246,11 +246,13 @@ class LaporanController extends Controller
         }
 
         $file = $request->file('gambar');
-        $nama_file = $module."_".time()."_".$file->getClientOriginalName();
-        $requestData['gambar'] = $nama_file;
+        if ($file) {
+            $nama_file = $module."_".time()."_".$file->getClientOriginalName();
+            $requestData['gambar'] = $nama_file;
+            $tujuan_upload = 'upload';
+            $file->move($tujuan_upload,$nama_file);
+        }
 
-        $tujuan_upload = 'upload';
-        $file->move($tujuan_upload,$nama_file);
 
         $laporan->update($requestData);
 
